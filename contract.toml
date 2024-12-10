@@ -1,0 +1,34 @@
+#[derive(Debug, PartialEq, Eq, Encode, Decode)]
+pub struct HealthData {
+    patient_id: u64,
+    timestamp: u64,
+    heart_rate: u8,
+    blood_pressure: (u8, u8),
+    activity_level: u8,
+}
+
+#[derive(Debug, PartialEq, Eq, Encode, Decode)]
+pub struct DoctorSuggestion {
+    doctor_id: u64,
+    patient_id: u64,
+    timestamp: u64,
+    suggestion: String,
+}
+
+#[external]
+impl HealthMonitor {
+    pub fn upload_health_data(&mut self, data: HealthData) {
+        // Verify sender is authorized wearable device
+        // Store encrypted health data on-chain
+    }
+
+    pub fn get_patient_data(&self, patient_id: u64, doctor_id: u64) -> Vec<HealthData> {
+        // Verify doctor's access rights
+        // Retrieve and decrypt patient data
+    }
+
+    pub fn add_suggestion(&mut self, suggestion: DoctorSuggestion) {
+        // Verify sender is authorized doctor
+        // Store suggestion on-chain
+    }
+}
